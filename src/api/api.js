@@ -10,6 +10,15 @@ export async function apiGet(url) {
         }
     })
 }
+export async function apiGetExcel(url) {
+    return await axios.get(url, {
+        headers: {
+            authorization: `Bearer ${window.localStorage.getItem('token')}`
+            
+        }
+        ,responseType: 'blob'
+    })
+}
 export async function apiPost(url, datas) {
     return await axios.post(url, datas, {
         headers: {

@@ -24,7 +24,7 @@ function Summaries({ datas }) {
                     </div>
                     <div class="col">
                       <div class="box-weight-data">
-                        <p class="text-inbox-data-green text-center">{datas && datas[0].weight}</p>
+                        {/* <p class="text-inbox-data-green text-center">{datas && datas[0].weight}</p> */}
                       </div>
                     </div>
                     <div class="col">
@@ -45,7 +45,7 @@ function Summaries({ datas }) {
                     </div>
                     <div class="col">
                       <div class="box-weight-data">
-                        <p class="text-inbox-data-green text-center">{datas && datas[1].weight}</p>
+                        {/* <p class="text-inbox-data-green text-center">{datas && datas[1].weight}</p> */}
                       </div>
                     </div>
                     <div class="col">
@@ -65,7 +65,7 @@ function Summaries({ datas }) {
                     </div>
                     <div class="col">
                       <div class="box-weight-data">
-                        <p class="text-inbox-data-green text-center">{datas && datas[2].weight}</p>
+                        {/* <p class="text-inbox-data-green text-center">{datas && datas[2].weight}</p> */}
                       </div>
                     </div>
                     <div class="col">
@@ -93,7 +93,7 @@ function Summaries({ datas }) {
                       </div>
                       <div class="col">
                         <div class="box-weight-data">
-                          <p class="text-inbox-data-green text-center">{datas && datas[0].weight}</p>
+                          {/* <p class="text-inbox-data-green text-center">{datas && datas[0].weight}</p> */}
                         </div>
                       </div>
                       <div class="col text-end">
@@ -118,7 +118,7 @@ function Summaries({ datas }) {
                       </div>
                       <div class="col">
                         <div class="box-weight-data">
-                          <p class="text-inbox-data-green text-center">{datas && datas[1].weight}</p>
+                          {/* <p class="text-inbox-data-green text-center">{datas && datas[1].weight}</p> */}
                         </div>
                       </div>
                       <div class="col text-end">
@@ -143,7 +143,7 @@ function Summaries({ datas }) {
                       </div>
                       <div class="col">
                         <div class="box-weight-data">
-                          <p class="text-inbox-data-green text-center">{datas && datas[2].weight}</p>
+                          {/* <p class="text-inbox-data-green text-center">{datas && datas[2].weight}</p> */}
                         </div>
                       </div>
                       <div class="col text-end">
