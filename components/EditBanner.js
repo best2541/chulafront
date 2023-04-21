@@ -8,17 +8,11 @@ const EditBanner = ({ api }) => {
     const [datas, setDatas] = useState([])
     const [loading, setLoading] = useState(true)
 
-    const logoutClick = () => {
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('role')
-        window.location.href = '/'
-    }
     const load = () => {
         setLoading(true)
         apiGet(`${api}/index/getallbanner`)
             .then((result) => {
                 if (!result.data.err) {
-                    console.log(result.data.banner[0].redirect)
                     setDatas(result.data.banner)
                     setBanner1({ ...banner1, redirect: Boolean(result.data.banner[0].redirect) })
                     setBanner2({ ...banner2, redirect: Boolean(result.data.banner[1].redirect) })
@@ -64,12 +58,12 @@ const EditBanner = ({ api }) => {
             })
     }
     const save = () => {
-        console.log(banner1, banner2, banner3)
         try {
             if (banner1.preview != "./images/work-create/ic-img-upload.svg") {
                 let form1 = new FormData()
                 form1.append('name', 'banner1')
                 form1.append('file', banner1.img && banner1.img)
+                form1.append('link', datas[0].link)
                 form1.append('redirect', banner1.redirect)
                 form1.append('id', 1)
                 apiPost(`${api}/index/editbanner`, form1)
@@ -83,6 +77,7 @@ const EditBanner = ({ api }) => {
                 let form2 = new FormData()
                 form2.append('name', 'banner2')
                 form2.append('file', banner2.img && banner2.img)
+                form2.append('link', datas[1].link)
                 form2.append('redirect', banner2.redirect)
                 form2.append('id', 2)
                 apiPost(`${api}/index/editbanner`, form2)
@@ -96,6 +91,7 @@ const EditBanner = ({ api }) => {
                 let form3 = new FormData()
                 form3.append('name', 'banner3')
                 form3.append('file', banner3.img && banner3.img)
+                form3.append('link', datas[2].link)
                 form3.append('redirect', banner3.redirect)
                 form3.append('id', 3)
                 apiPost(`${api}/index/editbanner`, form3)
@@ -113,6 +109,7 @@ const EditBanner = ({ api }) => {
     }
     useEffect(() => {
         load()
+        console.log(datas)
     }, [])
     return (
         <section className="sec-account">
@@ -144,7 +141,12 @@ const EditBanner = ({ api }) => {
                             </div>
                             <div className="input-group">
                                 <span className="input-group-text border-end-0"><input type='checkbox' onClick={(event) => setBanner1({ ...banner1, redirect: !banner1.redirect })} defaultChecked={datas[0] ? datas[0].redirect : null} /></span>
-                                <input type="text" id="name" name='name' className="form-control border-start-0" placeholder="Link vdo" value={datas[0] ? datas[0].link : ''} onChange={setDatas} />
+                                <input type="text" id="link1" name='link1' className="form-control border-start-0" placeholder="Link vdo" value={datas[0] ? datas[0].link : ''} onChange={event => setDatas(datas.map((data, index) => {
+                                    if (index == 0)
+                                        return { ...data, link: event.target.value }
+                                    else
+                                        return data
+                                }))} />
                             </div>
                         </div>
                         <div className="row">
@@ -163,7 +165,12 @@ const EditBanner = ({ api }) => {
                             </div>
                             <div className="input-group">
                                 <span className="input-group-text border-end-0"><input type='checkbox' onClick={(event) => setBanner2({ ...banner2, redirect: !banner2.redirect })} defaultChecked={datas[1] ? datas[1].redirect : null} /></span>
-                                <input type="text" id="name" name='name' className="form-control border-start-0" placeholder="Link vdo" value={datas[1] ? datas[1].link : ''} onChange={setDatas} />
+                                <input type="text" id="link2" name='link2' className="form-control border-start-0" placeholder="Link vdo" value={datas[1] ? datas[1].link : ''} onChange={event => setDatas(datas.map((data, index) => {
+                                    if (index == 1)
+                                        return { ...data, link: event.target.value }
+                                    else
+                                        return data
+                                }))} />
                             </div>
                         </div>
                         <div className="row">
@@ -182,7 +189,12 @@ const EditBanner = ({ api }) => {
                             </div>
                             <div className="input-group">
                                 <span className="input-group-text border-end-0"><input type='checkbox' onClick={(event) => setBanner3({ ...banner3, redirect: !banner3.redirect })} defaultChecked={datas[2] ? datas[2].redirect : null} /></span>
-                                <input type="text" id="name" name='name' className="form-control border-start-0" placeholder="Link vdo" value={datas[2] ? datas[2].link : ''} onChange={setDatas} />
+                                <input type="text" id="link3" name='link3' className="form-control border-start-0" placeholder="Link vdo" value={datas[2] ? datas[2].link : ''} onChange={event => setDatas(datas.map((data, index) => {
+                                    if (index == 2)
+                                        return { ...data, link: event.target.value }
+                                    else
+                                        return data
+                                }))} />
                             </div>
                         </div>
 

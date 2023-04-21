@@ -15,64 +15,50 @@ var settings = {
   nextArrow: <NextBtn />
 };
 
-function IndexNews() {
+function IndexNews({ api,datas }) {
+  const data = datas?.filter(data => data.id == 1 && data.status == 1)
+  console.log(data)
   return (
     <section id="show-news" class="my-5">
       <div class="container">
-        <div class="box-text-headline">
-          <p class="text-headline">
-            ข่าวสาร
-          </p>
-        </div>
-        <div class="news-index">
-          <div class="boxslide-news-index">
-            <div id="carouselbanner-news-index" class="carousel slide">
-              <div class="">
-                <Slider {...settings}>
-                  <div class="carousel-item active">
-                    <img class="img-bannernews-index d-block w-100" src="./images/index/news1.png" alt="..." />
+        {data?.length > 0 &&
+          <>
+            <div class="box-text-headline">
+              <p class="text-headline">
+                ข่าวสาร
+              </p>
+            </div>
+            <div class="news-index">
+              <div class="boxslide-news-index">
+                <div id="carouselbanner-news-index" class="carousel slide">
+                  <div class="">
+                    <Slider {...settings}>
+                      <div class="carousel-item active">
+                        <img class="img-bannernews-index d-block w-100" src={`${api}/img/${data[0].img1}`} alt="..." />
+                      </div>
+                      <div class="carousel-item">
+                        <img class="img-bannernews-index d-block w-100" src={`${api}/img/${data[0].img2}`} alt="..." />
+                      </div>
+                    </Slider>
                   </div>
-                  <div class="carousel-item">
-                    <img class="img-bannernews-index d-block w-100" src="./images/index/news2.png" alt="..." />
-                  </div>
-                  <div class="carousel-item">
-                    <img class="img-bannernews-index d-block w-100" src="./images/index/news3.png" alt="..." />
-                  </div>
-                </Slider>
+                </div>
+              </div>
+
+              <p class="texthead-news-index mt-4">
+                {data[0].title}
+              </p>
+
+              <p class=" news-text-limit">
+                {data[0].detail}
+              </p>
+              <div class="box-bt-rm my-4">
+                <a href={`/news/1`} target='_blank' class="btn button-readmore">
+                  อ่านเพิ่มเติม
+                </a>
               </div>
             </div>
-          </div>
-
-          <p class="texthead-news-index mt-4">
-            หลักสูตรสหสาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม บัณฑิตวิทยาลัย จุฬาฯ ได้เข้าร่วมงาน “Chula Sustainability Fest 2022”
-          </p>
-
-          <p class=" news-text-limit">
-            เมื่อวันที่ 2-4 กันยายน 2565 ณ อุทยาน 100 ปี จุฬาลงกรณ์
-            มหาวิทยาลัย ซึ่งหลักสูตรฯ ได้ร่วมนำเสนอผลงานวิจัยในรูปแบบ
-            โปสเตอร์ผ่านสื่อดิจิทัล ในหัวข้อ “ความปลอดภัย อาชีวอนามัย และสภาพแวดล้อมในการทำงาน” โดยมี รศ.ดร.นุตา ศุภคต รองผู้อำนวยการหลักสูตรสหสาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม เป็นอาจารย์ประจำภาควิชาวิทยาศาสตร์สิ่งแวดล้อม
-            เมื่อวันที่ 2-4 กันยายน 2565 ณ อุทยาน 100 ปี จุฬาลงกรณ์
-            มหาวิทยาลัย ซึ่งหลักสูตรฯ ได้ร่วมนำเสนอผลงานวิจัยในรูปแบบ
-            โปสเตอร์ผ่านสื่อดิจิทัล ในหัวข้อ “ความปลอดภัย อาชีวอนามัย และสภาพแวดล้อมในการทำงาน” โดยมี รศ.ดร.นุตา ศุภคต รองผู้อำนวยการหลักสูตรสหสาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม เป็นอาจารย์ประจำภาควิชาวิทยาศาสตร์สิ่งแวดล้อม
-            เมื่อวันที่ 2-4 กันยายน 2565 ณ อุทยาน 100 ปี จุฬาลงกรณ์
-            มหาวิทยาลัย ซึ่งหลักสูตรฯ ได้ร่วมนำเสนอผลงานวิจัยในรูปแบบ
-            โปสเตอร์ผ่านสื่อดิจิทัล ในหัวข้อ “ความปลอดภัย อาชีวอนามัย และสภาพแวดล้อมในการทำงาน” โดยมี รศ.ดร.นุตา ศุภคต รองผู้อำนวยการหลักสูตรสหสาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม เป็นอาจารย์ประจำภาควิชาวิทยาศาสตร์สิ่งแวดล้อม
-            เมื่อวันที่ 2-4 กันยายน 2565 ณ อุทยาน 100 ปี จุฬาลงกรณ์
-            มหาวิทยาลัย ซึ่งหลักสูตรฯ ได้ร่วมนำเสนอผลงานวิจัยในรูปแบบ
-            โปสเตอร์ผ่านสื่อดิจิทัล ในหัวข้อ “ความปลอดภัย อาชีวอนามัย และสภาพแวดล้อมในการทำงาน” โดยมี รศ.ดร.นุตา ศุภคต รองผู้อำนวยการหลักสูตรสหสาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม เป็นอาจารย์ประจำภาควิชาวิทยาศาสตร์สิ่งแวดล้อม
-            เมื่อวันที่ 2-4 กันยายน 2565 ณ อุทยาน 100 ปี จุฬาลงกรณ์
-            มหาวิทยาลัย ซึ่งหลักสูตรฯ ได้ร่วมนำเสนอผลงานวิจัยในรูปแบบ
-            โปสเตอร์ผ่านสื่อดิจิทัล ในหัวข้อ “ความปลอดภัย อาชีวอนามัย และสภาพแวดล้อมในการทำงาน” โดยมี รศ.ดร.นุตา ศุภคต รองผู้อำนวยการหลักสูตรสหสาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม เป็นอาจารย์ประจำภาควิชาวิทยาศาสตร์สิ่งแวดล้อม
-            เมื่อวันที่ 2-4 กันยายน 2565 ณ อุทยาน 100 ปี จุฬาลงกรณ์
-            มหาวิทยาลัย ซึ่งหลักสูตรฯ ได้ร่วมนำเสนอผลงานวิจัยในรูปแบบ
-            โปสเตอร์ผ่านสื่อดิจิทัล ในหัวข้อ “ความปลอดภัย อาชีวอนามัย และสภาพแวดล้อมในการทำงาน” โดยมี รศ.ดร.นุตา ศุภคต รองผู้อำนวยการหลักสูตรสหสาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม เป็นอาจารย์ประจำภาควิชาวิทยาศาสตร์สิ่งแวดล้อม
-          </p>
-          <div class="box-bt-rm my-4">
-            <a href={`/news/1`} target='_blank' class="btn button-readmore">
-              อ่านเพิ่มเติม
-            </a>
-          </div>
-        </div>
+          </>
+        }
       </div>
     </section>
   )

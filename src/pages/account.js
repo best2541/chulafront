@@ -6,6 +6,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import AccountDetail from '../../components/Account';
 import EditBanner from '../../components/EditBanner';
+import EditFooter from '../../components/EditFooter';
 
 export default function Account(props) {
   const role = typeof window !== 'undefined' ? window?.localStorage.getItem('role') : ''
@@ -113,8 +114,11 @@ export default function Account(props) {
 
       <Header api={props.api} />
       {role == 3 &&
-        <EditBanner datas={input} setDatas={inputChange} cancle={() => setInput(datas)} saveClick={saveClick} edit={edit} setEdit={setEdit} sendEmail={sendEmail} reportChange={reportChange} api={props.api} />
+        <EditFooter />
       }
+      {/* {role == 3 &&
+        <EditBanner datas={input} setDatas={inputChange} cancle={() => setInput(datas)} saveClick={saveClick} edit={edit} setEdit={setEdit} sendEmail={sendEmail} reportChange={reportChange} api={props.api} />
+      } */}
       <AccountDetail datas={input} setDatas={inputChange} cancle={() => setInput(datas)} saveClick={saveClick} edit={edit} setEdit={setEdit} sendEmail={sendEmail} reportChange={reportChange} />
       <Footer api={props.api} />
     </>

@@ -1,25 +1,55 @@
 import Head from 'next/head'
+import { apiGet, apiPost } from '@/api/api'
+import { useEffect, useState } from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import OrderDetail from '../../../components/OrderDetail';
-import Header from '../../../components/Header2';
-import Footer from '../../../components/Footer';
-import { useRouter } from 'next/router'
-import FullNews from '../../../components/FullNews';
-import IndexOtherNews2 from '../../../components/IndexOtherNews2';
-import { useEffect, useState } from 'react';
-import { apiGet } from '@/api/api';
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import EditFooterDetail from '../../components/EditFooterDetail';
+import EditFooter from '../../components/EditFooter';
 
-export default function NewOrder(props) {
-  const [datas, setDatas] = useState([])
-  const router = useRouter()
-  const { id } = router.query
-  useEffect(() => {
-    apiGet(`${props.api}/index/getallnews`)
+export default function Account(props) {
+  const role = typeof window !== 'undefined' ? window?.localStorage.getItem('role') : ''
+  const [datas, setDatas] = useState({})
+  const [input, setInput] = useState({})
+  const [edit, setEdit] = useState(true)
+  const [report, setReport] = useState({})
+
+  const inputChange = (event) => {
+    const { name, value } = event.target
+    setInput({
+      ...datas,
+      [name]: value
+    })
+  }
+  const reportChange = (event) => {
+    const { name, value } = event.target
+    setReport({
+      ...report,
+      [name]: value
+    })
+  }
+  const saveClick = () => {
+    apiPost(`${props.api}/auth/update`, input)
       .then(result => {
         if (!result.data.err) {
-          setDatas(result.data.news)
-        }
+          alert('ok')
+        } else
+          setInput(datas)
+
+        setEdit(false)
       })
+  }
+  const sendEmail = () => {
+    apiPost(`${props.api}/setting/sendmail`, { email: 'test@gmail.com', report: 'test' })
+      .then(result => {
+        if (!result.data.err) {
+          alert('ok')
+        } else
+          console.log(result.data)
+      })
+  }
+  useEffect(() => {
+    apiGet(`${props.api}/auth/get_user`).then(result => (setDatas(result.data), setInput(result.data)))
   }, [])
   return (
     <>
@@ -82,18 +112,20 @@ export default function NewOrder(props) {
       </Head>
 
       <Header api={props.api} />
-      <FullNews data={datas.filter(data => data.status == 1 && data.id == id)} api={props.api} />
-      <IndexOtherNews2 datas={datas.filter(data => data.status == 1 && data.id != id)} api={props.api} />
+      {role == 3 &&
+        <>
+          <EditFooter />
+          <EditFooterDetail datas={input} setDatas={inputChange} cancle={() => setInput(datas)} saveClick={saveClick} edit={edit} setEdit={setEdit} sendEmail={sendEmail} reportChange={reportChange} api={props.api} />
+        </>
+      }
       <Footer api={props.api} />
     </>
   )
 }
-
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   return {
     props: {
-      api: process.env.API,
-      prevUrl: context.req.headers.referer
+      api: process.env.API
     },
   }
 }

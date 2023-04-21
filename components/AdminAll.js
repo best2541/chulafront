@@ -4,7 +4,7 @@ import closeIcon from '../images/work-create/ic-close.svg'
 import location2Icon from "../images/login/location2-ic.svg"
 import categoryIcon from "../images/login/category-ic.svg"
 import eyeIcon from "../images/login/eye.svg"
-import { apiPost } from '@/api/api'
+import { apiGet, apiPost } from '@/api/api'
 import timeArray from './time'
 import Link from 'next/link'
 import month from './month'
@@ -12,9 +12,10 @@ import month from './month'
 const AdminAll = ({ api }) => {
     const [input, setInput] = useState({})
     const [datas, setDatas] = useState([])
+    const [loading, setLoading] = useState(true)
 
     const renderMonth = month?.map((m, index) => (
-        <option value={index}>{m}</option>
+        <option value={index + 1}>{m}</option>
     ))
 
     let renderYear = []
@@ -31,7 +32,12 @@ const AdminAll = ({ api }) => {
     }
     const loadData = (event) => {
         event.preventDefault()
-        console.log(input)
+        setLoading(true)
+        apiPost(`${api}/setting/gettotalall`, input)
+            .then(result => {
+                setDatas(result.data.total)
+            })
+            .finally(() => setLoading(false))
         // apiPost(`${api}/order/getallorder`, input)
         //     .then(result => {
         //         if (!result.data.err) {
@@ -40,6 +46,24 @@ const AdminAll = ({ api }) => {
         //         } else
         //             console.log('err', result.data.err)
         //     })
+    }
+    const printExcel = (event) => {
+        apiGet(`${api}/setting/excelall?year=${input.year}&month=${input.month}`, { responseType: 'blob' })
+            .then(result => {
+                console.log(result)
+                if (!result.data.err) {
+                    const href = URL.createObjectURL(result.data);
+                    const link = document.createElement('a');
+                    link.href = href;
+                    link.setAttribute('download', 'demo.xlsx'); //or any other extension
+                    document.body.appendChild(link);
+                    link.click();
+
+                    // clean up "a" element & remove ObjectURL
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(href);
+                }
+            })
     }
 
     return (
@@ -69,7 +93,7 @@ const AdminAll = ({ api }) => {
                             </div>
                             <hr class="hr-bigbox-work" />
                             <div class="row d-flex justify-content-center">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                                {/* <div class="col-lg-4 col-md-4 col-sm-12 col-12">
                                     <select id="filter-work-recipientOne" class="form-select filter-select pad-bot" aria-label="Default select example" name='category' onChange={inputChange} required>
                                         <option selected>เลือกประเภทขยะอาหาร</option>
                                         <option value="1">อาหารใกล้หมดอายุ</option>
@@ -77,7 +101,7 @@ const AdminAll = ({ api }) => {
                                         <option value="3">เศษผักผลไม้</option>
                                         <option value="4">เศษเนื้อสัตว์</option>
                                     </select>
-                                </div>
+                                </div> */}
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-12">
                                     <select id="filter-work-recipientTwo" class="form-select filter-select pad-bot" aria-label="Default select example" name='month' onChange={inputChange} required>
                                         <option selected>เลือกเดือน</option>
@@ -88,7 +112,7 @@ const AdminAll = ({ api }) => {
                                     <select id="filter-work-recipientThree" class="form-select filter-select pad-bot" aria-label="Default select example" name='year' onChange={inputChange} required>
                                         <option selected>เลือกปี</option>
                                         {renderYear.map(y => (
-                                            <option>{y}</option>
+                                            <option value={y}>{y + 543}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -97,108 +121,112 @@ const AdminAll = ({ api }) => {
                                 </div>
                             </div>
                         </form>
-                        <hr class="hr-bigbox-work" />
-                        <div class="box-create-detail">
-                            <div class="row d-flex align-items-center">
-                                <div class="col-6 d-flex align-items-center">
-                                    <p class="text-work text-start">
-                                        อาหารใกล้หมดอายุ
-                                    </p>
-                                </div>
-                                <div class="col-6">
-                                    <div class="col d-flex align-items-center justify-content-end">
-                                        <span class="">
-                                            <p class="text-work-data">น้ำหนัก</p>
-                                        </span>
-                                        <div class="boxtext-kg">
-                                            <div class="boxwork-weight-data">20</div>
+                        {loading == false &&
+                            <>
+                                <hr class="hr-bigbox-work" />
+                                <div class="box-create-detail">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-6 d-flex align-items-center">
+                                            <p class="text-work text-start">
+                                                อาหารใกล้หมดอายุ
+                                            </p>
                                         </div>
-                                        <span class="">
-                                            <p class="text-work-data">กก.</p>
-                                        </span>
+                                        <div class="col-6">
+                                            <div class="col d-flex align-items-center justify-content-end">
+                                                <span class="">
+                                                    <p class="text-work-data">น้ำหนัก</p>
+                                                </span>
+                                                <div class="boxtext-kg">
+                                                    <div class="boxwork-weight-data">{datas?.filter(d => d.category == 1).reduce((prev, curr) => prev + curr.weight, 0)}</div>
+                                                </div>
+                                                <span class="">
+                                                    <p class="text-work-data">กก.</p>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <hr class="hr-bigbox-work" />
+                                <hr class="hr-bigbox-work" />
 
-                        <div class="box-create-detail">
-                            <div class="row d-flex align-items-center">
-                                <div class="col-6 d-flex align-items-center">
-                                    <p class="text-work text-start">
-                                        เศษอาหาร
-                                    </p>
-                                </div>
-                                <div class="col-6">
-                                    <div class="col d-flex align-items-center justify-content-end">
-                                        <span class="">
-                                            <p class="text-work-data">น้ำหนัก</p>
-                                        </span>
-                                        <div class="boxtext-kg">
-                                            <div class="boxwork-weight-data">20</div>
+                                <div class="box-create-detail">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-6 d-flex align-items-center">
+                                            <p class="text-work text-start">
+                                                เศษอาหาร
+                                            </p>
                                         </div>
-                                        <span class="">
-                                            <p class="text-work-data">กก.</p>
-                                        </span>
+                                        <div class="col-6">
+                                            <div class="col d-flex align-items-center justify-content-end">
+                                                <span class="">
+                                                    <p class="text-work-data">น้ำหนัก</p>
+                                                </span>
+                                                <div class="boxtext-kg">
+                                                    <div class="boxwork-weight-data">{datas?.filter(d => d.category == 2).reduce((prev, curr) => prev + curr.weight, 0)}</div>
+                                                </div>
+                                                <span class="">
+                                                    <p class="text-work-data">กก.</p>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <hr class="hr-bigbox-work" />
+                                <hr class="hr-bigbox-work" />
 
-                        <div class="box-create-detail">
-                            <div class="row d-flex align-items-center">
-                                <div class="col-6 d-flex align-items-center">
-                                    <p class="text-work text-start">
-                                        เศษผักผลไม้
-                                    </p>
-                                </div>
-                                <div class="col-6">
-                                    <div class="col d-flex align-items-center justify-content-end">
-                                        <span class="">
-                                            <p class="text-work-data">น้ำหนัก</p>
-                                        </span>
-                                        <div class="boxtext-kg">
-                                            <div class="boxwork-weight-data">20</div>
+                                <div class="box-create-detail">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-6 d-flex align-items-center">
+                                            <p class="text-work text-start">
+                                                เศษผักผลไม้
+                                            </p>
                                         </div>
-                                        <span class="">
-                                            <p class="text-work-data">กก.</p>
-                                        </span>
+                                        <div class="col-6">
+                                            <div class="col d-flex align-items-center justify-content-end">
+                                                <span class="">
+                                                    <p class="text-work-data">น้ำหนัก</p>
+                                                </span>
+                                                <div class="boxtext-kg">
+                                                    <div class="boxwork-weight-data">{datas?.filter(d => d.category == 3).reduce((prev, curr) => prev + curr.weight, 0)}</div>
+                                                </div>
+                                                <span class="">
+                                                    <p class="text-work-data">กก.</p>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <hr class="hr-bigbox-work" />
+                                <hr class="hr-bigbox-work" />
 
-                        <div class="box-create-detail">
-                            <div class="row d-flex align-items-center">
-                                <div class="col-6 d-flex align-items-center">
-                                    <p class="text-work text-start">
-                                        เศษเนื้อสัตว์
-                                    </p>
-                                </div>
-                                <div class="col-6">
-                                    <div class="col d-flex align-items-center justify-content-end">
-                                        <span class="">
-                                            <p class="text-work-data">น้ำหนัก</p>
-                                        </span>
-                                        <div class="boxtext-kg">
-                                            <div class="boxwork-weight-data">20</div>
+                                <div class="box-create-detail">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-6 d-flex align-items-center">
+                                            <p class="text-work text-start">
+                                                เศษเนื้อสัตว์
+                                            </p>
                                         </div>
-                                        <span class="">
-                                            <p class="text-work-data">กก.</p>
-                                        </span>
+                                        <div class="col-6">
+                                            <div class="col d-flex align-items-center justify-content-end">
+                                                <span class="">
+                                                    <p class="text-work-data">น้ำหนัก</p>
+                                                </span>
+                                                <div class="boxtext-kg">
+                                                    <div class="boxwork-weight-data">{datas?.filter(d => d.category == 4).reduce((prev, curr) => prev + curr.weight, 0)}</div>
+                                                </div>
+                                                <span class="">
+                                                    <p class="text-work-data">กก.</p>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <hr class="hr-bigbox-work" />
+                                <hr class="hr-bigbox-work" />
 
-                        <button type="button" class="btn btn-prince">พิมพ์</button>
+                                <button type="button" class="btn btn-prince" onClick={printExcel}>พิมพ์</button>
+                            </>
+                        }
                     </div>
                 </div>
             </section>

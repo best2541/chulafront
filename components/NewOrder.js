@@ -11,15 +11,15 @@ const NewOrder = ({ api }) => {
     const [input3, setInput3] = useState({ weight: 0 })
     const [input4, setInput4] = useState({ weight: 0 })
     const [date, setDate] = useState({
-        sinceDate: null,
+        sinceIndex: null,
         sinceTime: null,
-        toDate: null,
+        toIndex: null,
         toTime: null
     })
     let tomorrow = new Date()
     tomorrow.setDate(new Date().getDate() + 1)
     let time = []
-    let hour = new Date().getHours()
+    let hour = new Date().getHours() + 1
     let minutes = new Date().getMinutes()
     for (let i = 0; hour <= 24; hour++, i++) {
         if (i === 0 && minutes < 30) {
@@ -54,9 +54,9 @@ const NewOrder = ({ api }) => {
         let formData2 = new FormData
         let formData3 = new FormData
         let formData4 = new FormData
-        const sinceDate = new Date(date.sinceDate)
+        const sinceDate = new Date()
         sinceDate.setHours(date.sinceTime.split(':')[0], date.sinceTime.split(':')[1], 0)
-        const toDate = new Date(date.toDate)
+        const toDate = new Date()
         toDate.setHours(date.toTime.split(':')[0], date.toTime.split(':')[1], 0)
         // console.log(date.toTime.split(':')[0])
         if (input1.weight != 0) {
@@ -416,7 +416,7 @@ const NewOrder = ({ api }) => {
                                 <div className="col-6 d-flex align-items-center">
                                     <p className="text-work">เศษผักผลไม้
                                         <span>
-                                            <button type="button" className="btn btn-popup-description3" data-bs-toggle="modal" data-bs-target="#popup-description-example3" onClick={() => document.getElementById('popup-description-example3').style.display = 'block'}>
+                                            <button type="button" className="btn btn-popup-description" data-bs-toggle="modal" data-bs-target="#popup-description-example3" onClick={() => document.getElementById('popup-description-example3').style.display = 'block'}>
                                                 <img src={infoIcon} alt="" />
                                             </button>
                                             <div className="modal" id="popup-description-example3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -668,47 +668,31 @@ const NewOrder = ({ api }) => {
                         <hr className="hr-bigbox-work" />
 
                         <p className="texthead-work">
-                            เลือกวัน/เวลาที่จะให้เข้ามารับขยะ
+                            เลือกเวลาที่จะให้เข้ามารับขยะ
                         </p>
 
                         <div className="box-select-time">
                             <p className="text-work">
-                                ระหว่างวัน/เวลา
+                                ตั้งแต่
                             </p>
                             <div className="row">
                                 <div className="col-6">
-                                    <select type="date" id="select-date-1" name='sinceDate' className="form-control input-select-time" onChange={(event) => inputChange(event, setDate)}>
-                                        <option value={null}>กำหนดวัน</option>
-                                        <option value={new Date()}>วันนี้</option>
-                                        <option value={tomorrow}>พรุ่งนี้</option>
-                                    </select>
-                                </div>
-                                <div className="col-6">
-                                    <select type="time" id="select-time-1" name='sinceTime' className="form-control input-select-time" placeholder="" onChange={(event) => inputChange(event, setDate)}>
+                                    <select type="time" id="select-time-1" name='sinceTime' className="form-control input-select-time" placeholder="" onChange={(event) => (setDate({ ...date, sinceTime: event.target.value, sinceIndex: event.target.selectedIndex }))}>
                                         <option value={null}>กำหนดเวลา</option>
-                                        {new Date(date.sinceDate).getDate() == new Date().getDate() ? renderTime : renderTimeSet}
+                                        {renderTime}
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div className="box-select-time">
                             <p className="text-work">
-                                ระหว่างวัน/เวลา
+                                จนถึง
                             </p>
                             <div className="row">
                                 <div className="col-6">
-                                    <select type="date" id="select-date-1" name='toDate' className="form-control input-select-time" onChange={(event) => inputChange(event, setDate)} disabled={date?.sinceDate == null}>
-                                        <option value={null}>กำหนดวัน</option>
-                                        {date.toDate == new Date() &&
-                                            <option value={new Date()}>วันนี้</option>
-                                        }
-                                        <option value={tomorrow}>พรุ่งนี้</option>
-                                    </select>
-                                </div>
-                                <div className="col-6">
-                                    <select type="time" id="select-time-1" name='toTime' className="form-control input-select-time" placeholder="" onChange={(event) => inputChange(event, setDate)} disabled={date?.sinceDate == null || date?.sinceTime == null}>
+                                    <select type="time" id="select-time-1" name='toTime' className="form-control input-select-time" placeholder="" onChange={(event) => inputChange(event, setDate)} disabled={date?.sinceTime == null}>
                                         <option value={null}>กำหนดเวลา</option>
-                                        {new Date(date.toDate).getDate() == tomorrow.getDate() ? renderTimeSet : renderTime}
+                                        {renderTime?.slice(date.sinceIndex)}
                                     </select>
                                 </div>
                             </div>

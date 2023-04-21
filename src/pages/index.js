@@ -29,8 +29,8 @@ export default function Login(props) {
       <Banner api={props.api} banners={datas.banner} />
       <BannerButton />
       <Summaries datas={datas.summary} />
-      <IndexNews />
-      <IndexOtherNews />
+      <IndexNews api={props.api} datas={datas.news} />
+      <IndexOtherNews api={props.api} datas={datas.news} />
       <Footer api={props.api} />
     </>
   )

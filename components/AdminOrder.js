@@ -46,14 +46,37 @@ const AdminOrder = ({ api }) => {
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-5 col-6">
                             <p class="text-work text-end">
-                                <span>
-                                    <img class="icon-detailwork-recipient" src={categoryIcon} alt="" />
-                                </span>
-                                {
-                                    data.category == 1 ? 'อาหารใกล้หมดอายุ'
-                                        : data.category == 2 ? 'เศษอาหาร'
-                                            : data.category == 3 ? 'ผักผลไม้'
-                                                : 'เศษเนื้อสัตว์'
+                                {data.category == 1 &&
+                                    <>
+                                        <span>
+                                            <img class="icon-detailwork-recipient" src='./images/work-create/expired.png' alt="" />
+                                        </span>
+                                        อาหารใกล้หมดอายุ
+                                    </>
+                                }
+                                {data.category == 2 &&
+                                    <>
+                                        <span>
+                                            <img class="icon-detailwork-recipient" src='./images/work-create/stink.png' alt="" />
+                                        </span>
+                                        เศษอาหาร
+                                    </>
+                                }
+                                {data.category == 3 &&
+                                    <>
+                                        <span>
+                                            <img class="icon-detailwork-recipient" src='./images/work-create/healthy-food.png' alt="" />
+                                        </span>
+                                        ผักผลไม้
+                                    </>
+                                }
+                                {data.category == 4 &&
+                                    <>
+                                        <span>
+                                            <img class="icon-detailwork-recipient" src='./images/work-create/chicken-leg.png' alt="" />
+                                        </span>
+                                        เศษเนื้อสัตว์
+                                    </>
                                 }
                             </p>
                         </div>

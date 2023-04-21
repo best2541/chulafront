@@ -16,7 +16,6 @@ function Footer(api) {
         apiGet(`${api.api}/index/getfooter`).then(result => {
             if (!result.data.err)
                 setDatas(result.data.footer)
-            console.log(result.data)
         })
     }, [])
     return (

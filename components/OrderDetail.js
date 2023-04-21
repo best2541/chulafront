@@ -17,14 +17,25 @@ const OrderDetail = ({ api, id, role, prev }) => {
             })
     }
     const approveClick = () => {
-        apiPost(`${api}/order/approve`, {
-            id: id
-        }).then(result => {
-            if (!result.data.err)
-                window.location.href = '/noti'
-            else
-                alert('ไม่สำเร็จ')
-        })
+        if (datas.status == 0) {
+            apiPost(`${api}/order/takeorder`, {
+                id: id
+            }).then(result => {
+                if (!result.data.err)
+                    window.location.href = '/noti'
+                else
+                    alert('ไม่สำเร็จ')
+            })
+        } else {
+            apiPost(`${api}/order/approve`, {
+                id: id
+            }).then(result => {
+                if (!result.data.err)
+                    window.location.href = '/noti'
+                else
+                    alert('ไม่สำเร็จ')
+            })
+        }
     }
     useEffect(() => {
         loadData()
@@ -126,7 +137,7 @@ const OrderDetail = ({ api, id, role, prev }) => {
                             </p>
                             <div class="box-inputtext-description-detail">
                                 <p>
-                                    {datas.description}
+                                    {datas.description != 'undefined' && datas.description}
                                 </p>
                             </div>
                         </div>
@@ -140,7 +151,7 @@ const OrderDetail = ({ api, id, role, prev }) => {
                                 </div>
                                 {role != 3 &&
                                     <div class="col-6">
-                                        <button type="button" class="btn btn-create-work w-100" data-bs-toggle="modal" data-bs-target="popup-confirm-receive" onClick={() => document.getElementById('popup-confirm-receive').style.display = 'block'}>
+                                        <button type="button" class="btn btn-create-work w-100" data-bs-toggle="modal" data-bs-target="popup-confirm-receive" onClick={() => document.getElementById('popup-confirm-receive').style.display = 'block'} disabled={datas.status != 3 && datas.status != 4 && datas.status != 0}>
                                             รับขยะ
                                         </button>
                                     </div>

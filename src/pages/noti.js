@@ -6,7 +6,7 @@ import Footer from '../../components/Footer'
 import Noti from '../../components/Noti'
 import { useEffect, useState } from 'react';
 import { apiGet } from '@/api/api';
-import ReceiveNoti from '../../components/receiveNoti';
+import ReceiveNoti from '../../components/ReceiveNoti';
 
 export default function Notification(props) {
     const role = typeof window !== 'undefined' ? window?.localStorage.getItem('role') : ''

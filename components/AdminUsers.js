@@ -18,11 +18,6 @@ const AdminUsers = ({ api }) => {
         <option value={index}>{m}</option>
     ))
 
-    let renderYear = []
-    for (let y = new Date().getFullYear(); new Date().getFullYear() - 20 < y; y--) {
-        renderYear.push(y)
-    }
-
     const inputChange = (event) => {
         const { name, value } = event.target
         setInput({

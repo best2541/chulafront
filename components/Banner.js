@@ -29,10 +29,14 @@ function Banner({ banners, api }) {
           {/* <div class="carousel-inner"> */}
           <Slider {...settings} className='banner'>
             {banners?.filter(banner => banner.redirect == 1).map(banner => {
-              console.log(banner)
               return (
                 <div class="carousel-item">
-                  <img class="img-banner-index" src={`${api}/img/${banner.img}`} alt="..." />
+                  {banner.link.trim() != ''
+                    ?
+                    <a href={banner.link} target='_blank'><img class="img-banner-index" src={`${api}/img/${banner.img}`} alt="..." /></a>
+                    :
+                    <img class="img-banner-index" src={`${api}/img/${banner.img}`} alt="..." />
+                  }
                 </div>
               )
             })}

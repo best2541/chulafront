@@ -4,23 +4,12 @@ import OrderDetail from '../../../components/OrderDetail';
 import Header from '../../../components/Header2';
 import Footer from '../../../components/Footer';
 import { useRouter } from 'next/router'
-import FullNews from '../../../components/FullNews';
-import IndexOtherNews2 from '../../../components/IndexOtherNews2';
-import { useEffect, useState } from 'react';
-import { apiGet } from '@/api/api';
+import NewsDetail from '../../../components/newsDetail';
 
 export default function NewOrder(props) {
-  const [datas, setDatas] = useState([])
+  const role = typeof window !== 'undefined' ? window?.localStorage.getItem('role') : ''
   const router = useRouter()
   const { id } = router.query
-  useEffect(() => {
-    apiGet(`${props.api}/index/getallnews`)
-      .then(result => {
-        if (!result.data.err) {
-          setDatas(result.data.news)
-        }
-      })
-  }, [])
   return (
     <>
       <Head>
@@ -82,8 +71,7 @@ export default function NewOrder(props) {
       </Head>
 
       <Header api={props.api} />
-      <FullNews data={datas.filter(data => data.status == 1 && data.id == id)} api={props.api} />
-      <IndexOtherNews2 datas={datas.filter(data => data.status == 1 && data.id != id)} api={props.api} />
+      <NewsDetail api={props.api} id={id} role={role} prev={props.prevUrl} />
       <Footer api={props.api} />
     </>
   )

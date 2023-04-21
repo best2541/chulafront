@@ -15,6 +15,10 @@
     margin-left: 15%;
     list-style: none;
 } */
+.updateDate {
+    font-size: 7px;
+}
+
 .border-end-radius {
     border-radius: 0px 50px 50px 0px !important;
     border: none !important;
@@ -653,7 +657,6 @@ body {
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
     padding: 0.5rem 1.5rem;
-    width: 140px;
 }
 
 #show-news {
@@ -1213,17 +1216,6 @@ body {
 }
 
 .btn-select-cancel:hover {
-    font-size: 20px;
-    font-weight: 500;
-    padding: 0.5rem 7rem;
-    width: 100%;
-    border-radius: 10px;
-    color: #404040;
-    background-color: #EBEBEB;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
     opacity: 0.8;
 }
 
@@ -1679,14 +1671,14 @@ body {
     color: #fff;
     font-size: 16px;
     font-weight: 500;
-    background-color: #ff0000;
+    background-color: #ff0000 !important;
     padding: 2px 1rem;
     border-radius: 8px;
 }
 
 .btn-noti-cancel-work:hover {
     color: #fff;
-    background-color: #ff0000;
+    background-color: #ff0000 !important;
     padding: 2px 1rem;
     border-radius: 8px;
     opacity: 0.8;
@@ -1808,6 +1800,19 @@ body {
 .filter-select:focus {
     box-shadow: none;
     border: 1px solid #2C5D5A;
+}
+
+.box-status-pass {
+    padding: 2px 0.5rem;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: #2C5D5A;
+    color: white;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
 }
 
 .box-status-free {
@@ -2325,24 +2330,6 @@ body {
         font-size: 16px;
     }
 
-    .box-status-free {
-        padding: 2px 1.5rem;
-        font-size: 16px;
-        font-weight: 500;
-    }
-
-    .box-status-inprocess {
-        padding: 2px 1.5rem;
-        font-size: 16px;
-        font-weight: 500;
-    }
-
-    .box-status-fail {
-        padding: 2px 1.5rem;
-        font-size: 16px;
-        font-weight: 500;
-    }
-
     .btn-see-detail-recipient {
         padding: 2px 1.5rem;
         font-size: 16px;
@@ -2767,18 +2754,6 @@ body {
         font-size: 14px;
         font-weight: 400;
         margin-bottom: 0;
-    }
-
-    .box-weight-data {
-        background-color: #fff;
-        border: 1px solid #989898;
-        border-radius: 8px;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        -ms-border-radius: 8px;
-        -o-border-radius: 8px;
-        padding: 0.5rem 0.5rem;
-        width: 150px;
     }
 
     .text-inbox-data-green {
@@ -3289,27 +3264,27 @@ body {
     }
 
     .box-status-free {
-        padding: 2px 0.5rem;
-        font-size: 12px;
-        font-weight: 500;
+        padding: 2px 0.5rem !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
     }
 
     .box-status-inprocess {
-        padding: 2px 0.5rem;
-        font-size: 12px;
-        font-weight: 500;
+        padding: 2px 0.5rem !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
     }
 
     .box-status-fail {
-        padding: 2px 0.5rem;
-        font-size: 12px;
-        font-weight: 500;
+        padding: 2px 0.5rem !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
     }
 
     .btn-see-detail-recipient {
-        padding: 2px 0.5rem;
-        font-size: 12px;
-        font-weight: 500;
+        padding: 2px 0.5rem !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
     }
 
     .box-image-description-detail {
@@ -3357,10 +3332,6 @@ body {
         width: 32px;
         padding: 2px 0;
         height: 32px;
-    }
-
-    .box-weight-data {
-        width: 120px;
     }
 
     .text-inbox-data-green {

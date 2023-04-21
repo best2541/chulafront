@@ -30,15 +30,15 @@ const ReceiveNoti = ({ datas, setDatas, api }) => {
         })
     }
 
-    const renderNoti = datas?.map(data => (
+    const renderNoti = datas?.map((data, index) => (
         <>
             <div class="accordion-item acd-item-noti">
                 <h2 class="accordion-header acd-header-noti">
-                    <button class="accordion-button acd-btn-noti" type="button" data-bs-toggle="collapse" data-bs-target="panelsStayOpen-collapseOne-noti" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne" onClick={(event) => toggleClick(event)}>
+                    <button class="accordion-button acd-btn-noti" type="button" data-bs-toggle="collapse" data-bs-target={`panelsStayOpen-collapseOne-noti${index}`} aria-expanded="true" aria-controls="panelsStayOpen-collapseOne" onClick={(event) => toggleClick(event)}>
                         {data.category == 1 ? 'อาหารใกล้หมดอายุ' : data.category == 2 ? 'เศษอาหาร' : data.category == 3 ? 'เศษผักผลไม้' : 'เศษเนื้อสัตว์'}วันที่ {new Date(data.createdAt).getDate()} {month[new Date(data.createdAt).getMonth()]} {new Date(data.createdAt).getFullYear() + 543}
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseOne-noti" class="accordion-collapse collapse show">
+                <div id={`panelsStayOpen-collapseOne-noti${index}`} class="accordion-collapse collapse show">
                     <div class="accordion-body acd-body-noti">
 
                         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
@@ -63,7 +63,7 @@ const ReceiveNoti = ({ datas, setDatas, api }) => {
                                 </li>
                                 <li class="timeline-item">
                                     <div class={`timeline-info-${data.status < 1 ? 'grey' : data.status == 2 ? 'red' : 'green'}`}>
-                                        <span>อีก {Math.floor((new Date(data.start_date) - new Date()) / 1000 / 60 / 60)} ชม. ถึงเวลานัดรับขยะอาหาร({new Date(data.start_date).getDate()} {month[new Date(data.start_date).getMonth()]} {new Date(data.start_date).getFullYear() + 543} เวลา {new Date(data.start_date).getHours()}.{minuteForm(new Date(data.start_date).getMinutes())} - {new Date(data.start_date).getDate() != new Date(data.end_date).getDate() && `${new Date(data.end_date).getDate()} ${month[new Date(data.end_date).getMonth()]} ${new Date(data.end_date).getFullYear() + 543}`} {new Date(data.end_date).getHours()}.{minuteForm(new Date(data.end_date).getMinutes())})</span>
+                                        <span>อีก {Math.floor((new Date(data.start_date) - new Date()) / 1000 / 60 / 60) > 0 ? Math.floor((new Date(data.start_date) - new Date()) / 1000 / 60 / 60) : '< 1'} ชม. ถึงเวลานัดรับขยะอาหาร({new Date(data.start_date).getDate()} {month[new Date(data.start_date).getMonth()]} {new Date(data.start_date).getFullYear() + 543} เวลา {new Date(data.start_date).getHours()}.{minuteForm(new Date(data.start_date).getMinutes())} - {new Date(data.start_date).getDate() != new Date(data.end_date).getDate() && `${new Date(data.end_date).getDate()} ${month[new Date(data.end_date).getMonth()]} ${new Date(data.end_date).getFullYear() + 543}`} {new Date(data.end_date).getHours()}.{minuteForm(new Date(data.end_date).getMinutes())})</span>
                                     </div>
                                     <div class="timeline-marker"></div>
                                     <div class="timeline-content">
