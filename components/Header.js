@@ -18,16 +18,16 @@ function Header({ api }) {
     }, [])
     return (
         <nav class="navbar">
-            <Link class="nav-logo" href="/">
-                <img src="./images/nav/logo.png" alt="" />
+            <Link class="nav-logo" href="/" style={{marginLeft:"100px"}}>
+                <img src="./images/nav/logo.png " alt="" />
             </Link>
             <div class="box-bt-nav">
                 {token ? <>
                     <Link href='/neworder'>
-                        <button class="btn bt-main text-white">{role == 1 ? 'สร้างงาน' : role == 2 ? 'รับขยะ' : 'ตรวจสอบ'}</button>
+                        <button class="btn bt-main text-white " style={{marginLeft:"10px"}}>{role == 1 ? 'สร้างงาน' : role == 2 ? 'รับขยะ' : 'ตรวจสอบ'}</button>
                     </Link>
                     <Link href='/noti'>
-                        <button class="btn bt-secon">
+                        <button class="btn bt-secon " style={{marginLeft:"10px"}}>
                             <img src="./images/nav/bel.png" alt="" />
                             {count > 0 &&
                                 <p className='noti'>{count}</p>
@@ -35,11 +35,11 @@ function Header({ api }) {
                         </button>
                     </Link>
                     <Link href='/account'>
-                        <button class="btn bt-secon"><img src="./images/nav/account.png" alt="" /></button>
+                        <button class="btn bt-secon " style={{marginRight:"100px",marginLeft:"10px"}}><img src="./images/nav/account.png" alt="" /></button>
                     </Link>
                 </> :
                     <Link href='/login'>
-                        <button class="btn bt-main text-white">Login</button>
+                        <button class="btn bt-main text-white " style={{marginRight:"100px"}}>Login</button>
                     </Link>
                 }
             </div>

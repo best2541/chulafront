@@ -110,29 +110,40 @@ export default function Register(props) {
               <span class={`input-group-text border-start-radius`}><img src="./images/login/Message-icon.png" alt="" /></span>
               <input type="email" class={`form-control border-end-radius ${validate.isEmailExist && 'text-danger'}`} placeholder="อีเมล" name='email' onChange={inputChange} required />
             </div>
-
+            {validate.isEmailExist &&
+              <p className='text-danger'>อีเมล ซ้ำ</p>
+            }
             <div class="input-group mb-3">
               <span class={`input-group-text border-start-radius`}><img src="./images/login/Lock-icon.png" alt="" /></span>
               <input type="password" id="password" class={`form-control border-start-0 ${!passwordTest.test(input.password) === true && 'text-danger'}`} placeholder="รหัสผ่าน" ref={passwordRef} name='password' value={input.password} onChange={inputChange} required />
               <span class={`input-group-text border-end-radius `}><i class="bi bi-eye-slash" id="togglePassword" onClick={(event) => togglePassword(passwordRef.current, event)}></i></span>
             </div>
+            {passwordTest.test(input?.password) != true &&
+              <p className='text-danger'>รหัสผ่านต้องเป็นตัวเลข6หลัก</p>
+            }
 
             <div class="input-group mb-3">
               <span class={`input-group-text border-start-radius`}><img src="./images/login/Lock-icon.png" alt="" /></span>
               <input type="password" id="password" class={`form-control border-start-0 ${input.password !== input.confirmpassword && 'text-danger'}`} placeholder="ยืนยันรหัสผ่าน" ref={confirmpasswordRef} name='confirmpassword' value={input.confirmpassword} onChange={inputChange} required />
               <span class={`input-group-text border-end-radius`}><i class="bi bi-eye-slash" id="togglePassword" onClick={(event) => togglePassword(confirmpasswordRef.current, event)}></i></span>
             </div>
-
+            {input.password !== input.confirmpassword &&
+              <p className='text-danger'>รหัสผ่านไม่เหมือนกัน</p>
+            }
             <div class="input-group mb-3">
               <span class={`input-group-text border-start-radius`}><img src="./images/login/account-icon.png" alt="" /></span>
               <input type="text" class={`form-control border-end-radius ${validate.isNameExist && 'text-danger'}`} placeholder="ชื่อหน่วยงาน" name='name' onChange={inputChange} required />
             </div>
-
+            {validate.isNameExist &&
+              <p className='text-danger'>ชื่อหน่วยงาน ซ้ำ</p>
+            }
             <div class="input-group mb-3">
               <span className={`input-group-text border-start-radius`}><img src="./images/login/tel-icon.png" alt="" /></span>
               <input type="text" className={`form-control border-end-radius ${test.test(input.phone) ? '' : 'text-danger'}`} placeholder="เบอร์โทรศัพท์" name='phone' onChange={inputChange} required />
             </div>
-
+            {!validate.checkPhone &&
+              <p className='text-danger'>เบอร์โทรศัพท์ไม่ถูกต้อง</p>
+            }
             <div class="input-group mb-3">
               <span class="input-group-text border-start-radius"><img src="./images/login/location-icon.png" alt="" /></span>
               <input type="text" class="form-control border-end-radius" placeholder="ที่อยู่" name='address' onChange={inputChange} required />
@@ -176,7 +187,7 @@ export default function Register(props) {
                 </select>
               </div>
             }
-            {validate.isEmailExist &&
+            {/* {validate.isEmailExist &&
               <p className='text-danger'>อีเมล ซ้ำ</p>
             }
             {passwordTest.test(input?.password) != true &&
@@ -190,7 +201,7 @@ export default function Register(props) {
             }
             {validate.isNameExist &&
               <p className='text-danger'>ชื่อหน่วยงาน ซ้ำ</p>
-            }
+            } */}
             <button type='submit' class="btn bg-green text-white w-100 rounded-pill" disabled={router.query.role == '2'
               ? input?.objective == '' || !passwordTest.test(input.password) || !validate.checkPhone || validate.isEmailExist || input.password !== input.confirmpassword || validate.isNameExist
               : validate.isEmailExist || !validate.checkPhone || !passwordTest.test(input.password) || input.password !== input.confirmpassword || validate.isNameExist}>สร้างบัญชี</button>

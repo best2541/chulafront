@@ -79,6 +79,16 @@ const EditFooterDetail = ({ api }) => {
                         </div>
 
                         <div className="col-lg-6 col-md-6 col-12">
+                            <div className="input-group">
+                                <span className="input-group-text border-end-0 border-start-radius"></span>
+                                <input type="text" name='sponsor' className="form-control border-start-0" placeholder="Sponsor" onChange={datasChange} value={datas.email} />
+                            </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6 col-12">
+                      
+                        </div>
+
+                        <div className="col-lg-6 col-md-6 col-12">
                             <div className="box-btn-signout">
                                 <button className="btn bg-green text-white rounded-pill" style={{ 'width': '100%' }} onClick={saveClick}>บันทึก</button>
                             </div>

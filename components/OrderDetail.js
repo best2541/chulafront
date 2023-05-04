@@ -75,25 +75,25 @@ const OrderDetail = ({ api, id, role, prev }) => {
                                 ข้อมูลติดต่อ
                             </p>
                             <p class="text-work text-start mb-2">
-                                <span>
+                                <span style={{marginRight:"15px"}}>
                                     <img class="icon-detailwork-recipient" src="../images/detail-work-create/loca-1-ic.svg" alt="" />
                                 </span>
                                 {datas.name}
                             </p>
                             <p class="text-work text-start mb-2">
-                                <span>
+                                <span style={{marginRight:"15px"}}>
                                     <img class="icon-detailwork-recipient" src="../images/detail-work-create/loca-2-ic.svg" alt="" />
                                 </span>
                                 {datas.address}
                             </p>
                             <p class="text-work text-start mb-2">
-                                <span>
+                                <span style={{marginRight:"15px"}}>
                                     <img class="icon-detailwork-recipient" src="../images/detail-work-create/tel-ic.svg" alt="" />
                                 </span>
                                 {datas.phone}
                             </p>
                             <p class="text-work text-start mb-2">
-                                <span>
+                                <span style={{marginRight:"15px"}}>
                                     <img class="icon-detailwork-recipient" src="../images/detail-work-create/time-ic.svg" alt="" />
                                 </span>
                                 {`${new Date(datas.start_date).getDate()} ${month[new Date(datas.start_date).getMonth()]} เวลา ${new Date(datas.start_date).getHours()}.${minuteForm(new Date(datas.start_date).getMinutes())}-${new Date(datas.to_date).getDate() != new Date(datas.end_date).getDate() && `${new Date(datas.end_date).getDate()} ${month[new Date(datas.end_date).getMonth()]}`} ${new Date(datas.end_date).getHours()}.${minuteForm(new Date(datas.end_date).getMinutes())}น.`}

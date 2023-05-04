@@ -9,7 +9,7 @@ function BannerButton() {
       <div class="container">
         {/* {role && */}
           <Link href='/neworder'>
-            <div class="btn button-workindex w-100">
+            <div class="btn button-workindex w-100" style={{fontSize:"30px"}}>
               {role == 1 ? 'สร้างงาน' : role == 2 ? 'รับขยะ' : 'ตรวจสอบ'}
             </div>
           </Link>

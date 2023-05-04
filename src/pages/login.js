@@ -82,7 +82,7 @@ export default function Login(props) {
 
         <div class="brand d-flex justify-content-center">
 
-          <span>
+          {/* <span>
             <img src="./images/login/สิ่งแวดล้อม-จุฬาฯ1.png" alt="" />
           </span>
           <span>
@@ -90,7 +90,7 @@ export default function Login(props) {
           </span>
           <span>
             <img src="./images/login/เทศบาล1.png" alt="" />
-          </span>
+          </span> */}
 
         </div>
         <form onSubmit={submitClick}>

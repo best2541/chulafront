@@ -62,6 +62,14 @@ function Footer(api) {
                                         </span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="" class="text-footer">
+                                        <span>
+                                            <img class="icon-contact"  alt="" />
+                                            {datas.sponser}
+                                        </span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

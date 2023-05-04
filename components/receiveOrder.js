@@ -34,7 +34,7 @@ const ReceiveOrder = ({ api }) => {
                     <div class="row d-flex align-items-center justify-content-between">
                         <div class="col-lg-8 col-md-8 col-sm-7 col-6">
                             <a class="text-work text-start" href="">
-                                <span>
+                                <span style={{marginRight:"15px"}}>
                                     <img class="icon-detailwork-recipient" src={location2Icon} alt="" />
                                 </span>
                                 {data.name}
@@ -77,7 +77,7 @@ const ReceiveOrder = ({ api }) => {
                         </div>
                         <div class="">
                             <a class="btn btn-see-detail-recipient" href={`/orderdetail/${data.id}`}>
-                                <span>
+                                <span style={{marginRight:"5px"}}>
                                     <img class="icon-detailwork-recipient" src={eyeIcon} alt="" />
                                 </span>
                                 ดูรายละเอียด
