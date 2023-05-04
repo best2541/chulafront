@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import pencilIcon from '../images/account/pencil.svg'
 import CreatePopup from './CreatePopup'
 
-const Account = ({ edit, setEdit, datas, setDatas, cancle, saveClick, sendEmail, reportChange }) => {
+const Account = ({ edit, setEdit, datas, setDatas, cancle, saveClick, sendEmail }) => {
 
     const editChange = () => {
         if (edit) {
@@ -48,29 +48,29 @@ const Account = ({ edit, setEdit, datas, setDatas, cancle, saveClick, sendEmail,
 
                         <div className="col-lg-6 col-md-6 col-12">
                             <div className="input-group">
-                                <span className="input-group-text border-end-0"><img src="./images/login/Message-icon.png" alt="" /></span>
-                                <input type="text" name='email' className="form-control border-start-0 color-gray" placeholder="อีเมล" disabled={true} value={datas.email} onChange={setDatas} />
+                                <span className="input-group-text border-end-0 border-start-radius"><img src="./images/login/Message-icon.png" alt="" /></span>
+                                <input type="text" name='email' className="form-control border-start-0 color-gray" placeholder="อีเมล" disabled={true} value={datas?.email} onChange={setDatas} />
                             </div>
                         </div>
 
                         <div className="col-lg-6 col-md-6 col-12">
                             <div className="input-group">
-                                <span className="input-group-text border-end-0"><img src="./images/login/account-icon.png" alt="" /></span>
-                                <input type="text" id="name" name='name' className="form-control border-start-0" placeholder="ชื่อหน่วยงาน" disabled={edit} value={datas.name} onChange={setDatas} />
+                                <span className="input-group-text border-end-0 border-start-radius"><img src="./images/login/account-icon.png" alt="" /></span>
+                                <input type="text" id="name" name='name' className="form-control border-start-0" placeholder="ชื่อหน่วยงาน" disabled={edit} value={datas?.name} onChange={setDatas} />
                             </div>
                         </div>
 
                         <div className="col-lg-6 col-md-6 col-12">
                             <div className="input-group">
-                                <span className="input-group-text border-end-0"><img src="./images/login/tel-icon.png" alt="" /></span>
-                                <input type="number" name='phone' className="form-control border-start-0" placeholder="เบอร์โทรศัพท์" disabled={edit} value={datas.phone} onChange={setDatas} />
+                                <span className="input-group-text border-end-0 border-start-radius"><img src="./images/login/tel-icon.png" alt="" /></span>
+                                <input type="number" name='phone' className="form-control border-start-0" placeholder="เบอร์โทรศัพท์" disabled={edit} value={datas?.phone} onChange={setDatas} />
                             </div>
                         </div>
 
                         <div className="col-lg-6 col-md-6 col-12">
                             <div className="input-group">
-                                <span className="input-group-text border-end-0"><img src="./images/login/location-icon.png" alt="" /></span>
-                                <input type="text" name='address' className="form-control border-start-0" placeholder="ที่อยู่" disabled={edit} value={datas.address} onChange={setDatas} />
+                                <span className="input-group-text border-end-0 border-start-radius"><img src="./images/login/location-icon.png" alt="" /></span>
+                                <input type="text" name='address' className="form-control border-start-0" placeholder="ที่อยู่" disabled={edit} value={datas?.address} onChange={setDatas} />
                             </div>
                         </div>
 

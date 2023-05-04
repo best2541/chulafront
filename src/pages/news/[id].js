@@ -82,8 +82,8 @@ export default function NewOrder(props) {
       </Head>
 
       <Header api={props.api} />
-      <FullNews data={datas.filter(data => data.status == 1 && data.id == id)} api={props.api} />
-      <IndexOtherNews2 datas={datas.filter(data => data.status == 1 && data.id != id)} api={props.api} />
+      <FullNews data={datas.filter((data,index) => data.id == id)} api={props.api} />
+      <IndexOtherNews2 datas={datas.filter(data => data.id != id)} api={props.api} />
       <Footer api={props.api} />
     </>
   )

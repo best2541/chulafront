@@ -48,9 +48,8 @@ const AdminAll = ({ api }) => {
         //     })
     }
     const printExcel = (event) => {
-        apiGet(`${api}/setting/excelall?year=${input.year}&month=${input.month}`, { responseType: 'blob' })
+        apiGet(`${api}/setting/excelall?year=${input.year}&month=${input.month}&category=${input.category}`, { responseType: 'blob' })
             .then(result => {
-                console.log(result)
                 if (!result.data.err) {
                     const href = URL.createObjectURL(result.data);
                     const link = document.createElement('a');
@@ -93,15 +92,16 @@ const AdminAll = ({ api }) => {
                             </div>
                             <hr class="hr-bigbox-work" />
                             <div class="row d-flex justify-content-center">
-                                {/* <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
                                     <select id="filter-work-recipientOne" class="form-select filter-select pad-bot" aria-label="Default select example" name='category' onChange={inputChange} required>
                                         <option selected>เลือกประเภทขยะอาหาร</option>
+                                        <option value='%'>ทั้งหมด</option>
                                         <option value="1">อาหารใกล้หมดอายุ</option>
                                         <option value="2">เศษอาหาร </option>
                                         <option value="3">เศษผักผลไม้</option>
                                         <option value="4">เศษเนื้อสัตว์</option>
                                     </select>
-                                </div> */}
+                                </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-12">
                                     <select id="filter-work-recipientTwo" class="form-select filter-select pad-bot" aria-label="Default select example" name='month' onChange={inputChange} required>
                                         <option selected>เลือกเดือน</option>

@@ -19,10 +19,10 @@ const NewOrder = ({ api }) => {
     let tomorrow = new Date()
     tomorrow.setDate(new Date().getDate() + 1)
     let time = []
-    let hour = new Date().getHours() + 1
+    let hour = new Date().getHours()
     let minutes = new Date().getMinutes()
     for (let i = 0; hour <= 24; hour++, i++) {
-        if (i === 0 && minutes < 30) {
+        if (i === 0) {
             if (minutes < 30)
                 time.push([hour, '30'])
         }
@@ -207,7 +207,7 @@ const NewOrder = ({ api }) => {
                                             <p className="text-work-data">น้ำหนัก</p>
                                         </span>
                                         <div className="boxtext-kg">
-                                            <input type="number" name='weight' min={0} className="form-control boxwork-weight-data" id="col-boxwork-weight-data" placeholder="" onChange={(event) => inputChange(event, setInput1)} />
+                                            <input type="number" name='weight' min={0} defaultValue={0} className="form-control boxwork-weight-data" id="col-boxwork-weight-data" placeholder="" onChange={(event) => inputChange(event, setInput1)} />
                                         </div>
                                         <span className="">
                                             <p className="text-work-data">กก.</p>
@@ -335,7 +335,7 @@ const NewOrder = ({ api }) => {
                                             <p className="text-work-data">น้ำหนัก</p>
                                         </span>
                                         <div className="boxtext-kg">
-                                            <input type="number" name='weight' min={0} className="form-control boxwork-weight-data" id="col-boxwork-weight-data" placeholder="" onChange={(event) => inputChange(event, setInput2)} />
+                                            <input type="number" name='weight' min={0} defaultValue={0} className="form-control boxwork-weight-data" id="col-boxwork-weight-data" placeholder="" onChange={(event) => inputChange(event, setInput2)} />
                                         </div>
                                         <span className="">
                                             <p className="text-work-data">กก.</p>
@@ -463,7 +463,7 @@ const NewOrder = ({ api }) => {
                                             <p className="text-work-data">น้ำหนัก</p>
                                         </span>
                                         <div className="boxtext-kg">
-                                            <input type="number" name='weight' min={0} className="form-control boxwork-weight-data" id="col-boxwork-weight-data" placeholder="" onChange={(event) => inputChange(event, setInput3)} />
+                                            <input type="number" name='weight' min={0} defaultValue={0} className="form-control boxwork-weight-data" id="col-boxwork-weight-data" placeholder="" onChange={(event) => inputChange(event, setInput3)} />
                                         </div>
                                         <span className="">
                                             <p className="text-work-data">กก.</p>
@@ -591,7 +591,7 @@ const NewOrder = ({ api }) => {
                                             <p className="text-work-data">น้ำหนัก</p>
                                         </span>
                                         <div className="boxtext-kg">
-                                            <input type="number" name='weight' min={0} className="form-control boxwork-weight-data" id="col-boxwork-weight-data" placeholder="" onChange={(event) => inputChange(event, setInput4)} />
+                                            <input type="number" name='weight' min={0} defaultValue={0} className="form-control boxwork-weight-data" id="col-boxwork-weight-data" placeholder="" onChange={(event) => inputChange(event, setInput4)} />
                                         </div>
                                         <span className="">
                                             <p className="text-work-data">กก.</p>
@@ -747,7 +747,7 @@ const NewOrder = ({ api }) => {
                                         </p>
                                         <div className="box-select-confirm d-flex justify-content-evenly  align-items-center">
                                             <div className="col-btn-select-confirm">
-                                                <button type="button" className="btn btn-select-cancel" data-bs-dismiss="modal" onClick={() => document.getElementById('popup-confirm-ok').style.display = 'none'}>ปิด</button>
+                                                <button type="button" className="btn btn-select-cancel" data-bs-dismiss="modal" onClick={() => window.location.reload()}>ปิด</button>
                                             </div>
                                         </div>
                                     </div>

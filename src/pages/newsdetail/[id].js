@@ -4,7 +4,7 @@ import OrderDetail from '../../../components/OrderDetail';
 import Header from '../../../components/Header2';
 import Footer from '../../../components/Footer';
 import { useRouter } from 'next/router'
-import NewsDetail from '../../../components/newsDetail';
+import NewsDetail from '../../../components/NewsDetail';
 
 export default function NewOrder(props) {
   const role = typeof window !== 'undefined' ? window?.localStorage.getItem('role') : ''

@@ -37,6 +37,16 @@ const OrderDetail = ({ api, id, role, prev }) => {
             })
         }
     }
+    const renewClick = () => {
+        apiPost(`${api}/order/renew`, {
+            id: id
+        }).then(result => {
+            if (!result.data.err)
+                window.location.href = '/neworder'
+            else
+                alert('ไม่สำเร็จ')
+        })
+    }
     useEffect(() => {
         loadData()
     }, [])
@@ -143,6 +153,22 @@ const OrderDetail = ({ api, id, role, prev }) => {
                         </div>
                         <hr class="hr-bigbox-work" />
                         <div class="bigbox-receive">
+                            <div className='row pb-1'>
+                                {role == 3 &&
+                                    <>
+                                        <div class="col-6">
+                                            <button type="button" class="btn btn-create-work w-100" onClick={() => document.getElementById('popup-confirm-receive3').style.display = 'block'} disabled={datas.status == 7}>
+                                                ขอรับขยะ
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="button" class="btn btn-warning w-100" onClick={() => document.getElementById('popup-confirm-receive2').style.display = 'block'}>
+                                                สำเร็จแล้ว
+                                            </button>
+                                        </div>
+                                    </>
+                                }
+                            </div>
                             <div class="row">
                                 <div class={`col-${role != 3 ? '6' : '12'}`}>
                                     <a class="btn btn-undo-detail" href={prev}>
@@ -174,6 +200,54 @@ const OrderDetail = ({ api, id, role, prev }) => {
                                                     </div>
                                                     <div class="col-btn-select-confirm">
                                                         <button type="button" class="btn btn-select-confirm" onClick={approveClick}>ยืนยัน</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal" id="popup-confirm-receive2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog  modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="btn-close btn-popup-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => document.getElementById('popup-confirm-receive2').style.display = 'none'}>
+                                                    <img src="../images/work-create/ic-close.svg" alt="" />
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="texthead-confirm-create text-center">
+                                                    งานสำเร็จแล้ว?
+                                                </p>
+                                                <div className='row'>
+                                                    <div class="col-6">
+                                                        <button type="button" class="btn btn-undo-detail" data-bs-dismiss="modal" onClick={() => document.getElementById('popup-confirm-receive2').style.display = 'none'}>ยกเลิก</button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <button type="button" class="btn btn-create-work w-100" onClick={approveClick}>ยืนยัน</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal" id="popup-confirm-receive3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog  modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="btn-close btn-popup-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => document.getElementById('popup-confirm-receive3').style.display = 'none'}>
+                                                    <img src="../images/work-create/ic-close.svg" alt="" />
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="texthead-confirm-create text-center">
+                                                    ขอรับขยะ?
+                                                </p>
+                                                <div className='row'>
+                                                    <div className='col-6'>
+                                                        <button type="button" class="btn btn-undo-detail" data-bs-dismiss="modal" onClick={() => document.getElementById('popup-confirm-receive3').style.display = 'none'}>ยกเลิก</button>
+                                                    </div>
+                                                    <div className='col-6'>
+                                                        <button type="button" class="btn btn-create-work w-100" onClick={renewClick}>ยืนยัน</button>
                                                     </div>
                                                 </div>
                                             </div>

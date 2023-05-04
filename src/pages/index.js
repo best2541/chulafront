@@ -22,9 +22,6 @@ export default function Login(props) {
   }, [])
   return (
     <>
-      <Head>
-      </Head>
-
       <Header api={props.api} />
       <Banner api={props.api} banners={datas.banner} />
       <BannerButton />

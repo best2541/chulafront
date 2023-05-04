@@ -263,7 +263,7 @@ body {
 
 .input-group-text {
     background: rgba(44, 93, 90, 0.1);
-    border: none;
+    border: none !important;
     border-radius: 50px;
     height: 48px;
 
@@ -286,7 +286,7 @@ body {
 
 .wraper-textform .form-control {
     background: rgba(44, 93, 90, 0.1);
-    border: none;
+    border: none !important;
     border-radius: 50px;
 }
 
@@ -519,7 +519,7 @@ body {
 }
 
 .modal-header {
-    border-bottom: 0;
+    border-bottom: 0 !important;
 }
 
 .modal-footer {
@@ -1024,7 +1024,7 @@ body {
 
 .modal-dialog {
     max-width: 50%;
-    margin: 1.75rem auto;
+    margin: 1.75rem auto !important;
 }
 
 .btn-popup-description {
@@ -1199,12 +1199,25 @@ body {
     padding: 0;
 }
 
+.btn-warning {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 6px 5rem;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
 
+.btn-warning:hover {
+    opacity: 0.8;
+}
 
 .btn-select-cancel {
     font-size: 20px;
     font-weight: 500;
-    padding: 0.5rem 7rem;
+    padding: 0.5rem 7rem !important;
     width: 100%;
     border-radius: 10px;
     color: #404040;
@@ -1222,7 +1235,7 @@ body {
 .box-tabs-work .btn-select-cancel {
     font-size: 20px;
     font-weight: 500;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0 !important;
     width: 100%;
     border-radius: 10px;
     color: #404040;
@@ -1750,7 +1763,7 @@ body {
 
 .boxform-control-report .form-control {
     background: rgba(44, 93, 90, 0.1);
-    border: none;
+    border: none !important;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -1846,7 +1859,7 @@ body {
     font-size: 18px;
     font-weight: 500;
     background-color: #ff0000;
-    color: #000;
+    color: #EBEBEB;
     border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -1983,7 +1996,7 @@ body {
 
     .modal-dialog {
         max-width: 60%;
-        margin: 1.75rem auto;
+        margin: 1.75rem auto !important;
     }
 
     .sec-boxhead-work {
@@ -1998,11 +2011,11 @@ body {
     }
 
     .btn-select-confirm {
-        font-size: 18px;
-        font-weight: 500;
-        padding: 0.5rem 5rem;
-        width: 100%;
-        border-radius: 10px;
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        padding: 0.5rem 5rem !important;
+        width: 100% !important;
+        border-radius: 10px !important;
         color: #fff;
         background-color: #2C5D5A;
         -webkit-border-radius: 10px;
@@ -2012,11 +2025,11 @@ body {
     }
 
     .btn-select-cancel {
-        font-size: 20px;
-        font-weight: 500;
-        padding: 0.5rem 5rem;
-        width: 100%;
-        border-radius: 10px;
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        padding: 0.5rem 5rem !important;
+        width: 100% !important;
+        border-radius: 10px !important;
         color: #404040;
         background-color: #EBEBEB;
         -webkit-border-radius: 10px;
@@ -2467,7 +2480,7 @@ body {
 
     .modal-dialog {
         max-width: 70%;
-        margin: 1.75rem auto;
+        margin: 1.75rem auto !important;
     }
 
     .box-image-upload {
@@ -2523,12 +2536,23 @@ body {
         padding: 0;
     }
 
+    .btn-warning {
+        font-size: 16px;
+        font-weight: 500;
+        padding: 6px 0;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+    }
+
     .btn-create-work {
         background-color: #2C5D5A;
         color: #fff;
         font-size: 16px;
         font-weight: 500;
-        padding: 6px 5rem;
+        padding: 6px 0;
         border-radius: 10px;
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
@@ -2537,10 +2561,10 @@ body {
     }
 
     .btn-select-cancel {
-        font-size: 18px;
-        font-weight: 500;
-        padding: 0.5rem 4.5rem;
-        width: 100%;
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        padding: 0.5rem 4.5rem !important;
+        width: 100% !important;
         border-radius: 10px;
         color: #404040;
         background-color: #EBEBEB;
@@ -2551,10 +2575,10 @@ body {
     }
 
     .btn-select-confirm {
-        font-size: 18px;
-        font-weight: 500;
-        padding: 0.5rem 4.5rem;
-        width: 100%;
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        padding: 0.5rem 4.5rem !important;
+        width: 100% !important;
         border-radius: 10px;
         color: #fff;
         background-color: #2C5D5A;
@@ -2592,7 +2616,7 @@ body {
 
 }
 
-@media (max-width: 440px) {
+@media (max-width: 500px) {
 
     .btn-noti-cancel-work {
         color: #fff;
@@ -2871,7 +2895,7 @@ body {
 
     .modal-dialog {
         max-width: 85%;
-        margin: 1.75rem auto;
+        margin: 1.75rem auto !important;
     }
 
     .modal-body {
@@ -2998,6 +3022,17 @@ body {
         margin: 0 0.5rem;
     }
 
+    .btn-warning {
+        font-size: 14px;
+        font-weight: 500;
+        padding: 6px 0;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+    }
+
     .btn-create-work {
         background-color: #2C5D5A;
         color: #fff;
@@ -3033,24 +3068,10 @@ body {
     }
 
     .btn-select-cancel {
-        font-size: 20px;
-        font-weight: 500;
-        padding: 0.5rem 2.5rem;
-        width: 100%;
-        border-radius: 10px;
-        color: #404040;
-        background-color: #EBEBEB;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        -ms-border-radius: 10px;
-        -o-border-radius: 10px;
-    }
-
-    .btn-select-cancel {
-        font-size: 14px;
-        font-weight: 500;
-        padding: 0.4rem 2.5rem;
-        width: 100%;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        padding: 0.4rem 2.5rem !important;
+        width: 100% !important;
         border-radius: 10px;
         color: #404040;
         background-color: #EBEBEB;
@@ -3061,10 +3082,10 @@ body {
     }
 
     .btn-select-confirm {
-        font-size: 14px;
-        font-weight: 500;
-        padding: 0.4rem 2.5rem;
-        width: 100%;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        padding: 0.4rem 2.5rem !important;
+        width: 100% !important;
         border-radius: 10px;
         color: #fff;
         background-color: #2C5D5A;
@@ -3083,12 +3104,12 @@ body {
 
     .box-tabs-work .btn-select-cancel {
         font-size: 16px;
-        padding: 4px 0;
+        padding: 4px 0 !important;
     }
 
     .box-tabs-work .btn-select-confirm {
         font-size: 16px;
-        padding: 4px 0;
+        padding: 4px 0 !important;
     }
 
     .texthead-confirm-create {
@@ -3230,7 +3251,7 @@ body {
 
     .boxform-control-report .form-control {
         background: rgba(44, 93, 90, 0.1);
-        border: none;
+        border: none !important;
         border-radius: 10px;
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;

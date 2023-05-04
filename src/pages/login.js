@@ -2,13 +2,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { apiPost } from '@/api/api'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 
 export default function Login(props) {
   const [input, setInput] = useState()
   const [err, setErr] = useState(false)
   const [text, setText] = useState('เข้าสู่ระบบ')
+  const passwordRef = useRef()
 
   const inputChange = (event) => {
     const { name, value } = event.target
@@ -16,6 +17,14 @@ export default function Login(props) {
       ...input,
       [name]: value
     })
+  }
+  const togglePassword = (button, icon) => {
+    if (button.getAttribute('type') === "password") {
+      button.setAttribute("type", "text")
+    } else {
+      button.setAttribute("type", "password")
+    }
+    icon.target.classList.toggle("bi-eye")
   }
   const submitClick = (event) => {
     event.preventDefault()
@@ -92,14 +101,14 @@ export default function Login(props) {
             </div>
 
             <div class="input-group mb-3">
-              <span class="input-group-text border-end-0"><Image src="/images/login/Message-icon.png" alt="" width={18} height={18} /></span>
+              <span class="input-group-text border-end-0 border-start-radius"><Image src="/images/login/Message-icon.png" alt="" width={18} height={18} /></span>
               <input type="text" class="form-control border-start-0" placeholder="อีเมล" name='email' required onChange={inputChange} />
             </div>
 
             <div class="input-group mb-3">
-              <span class="input-group-text border-end-0"><Image src="/images/login/Lock-icon.png" alt="" width={18} height={18} /></span>
-              <input type="password" id="password" class="form-control border-start-0" placeholder="รหัสผ่าน" name='password' required onChange={inputChange} />
-              <span class="input-group-text border-start-0"><i class="bi bi-eye-slash" id="togglePassword"></i></span>
+              <span class="input-group-text border-end-0 border-start-radius"><Image src="/images/login/Lock-icon.png" alt="" width={18} height={18} /></span>
+              <input ref={passwordRef} type="password" id="password" class="form-control border-start-0" placeholder="รหัสผ่าน" name='password' required onChange={inputChange} />
+              <span class="input-group-text border-start-0 border-end-radius"><i class="bi bi-eye-slash" id="togglePassword" onClick={(event) => togglePassword(passwordRef.current, event)}></i></span>
             </div>
             {err &&
               <p className='text-danger'>{err}</p>

@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import { apiGet, apiPost } from '@/api/api'
 
 export default function Register(props) {
-  const test = /^0\d{8,9}\s*$/g
-  const passwordTest = /^\d{6}$/g
+  const test = /^0\d{8,9}\s*$/
+  const passwordTest = /^\d{6}$/
   const router = useRouter()
   const passwordRef = useRef()
   const confirmpasswordRef = useRef()
@@ -57,6 +57,7 @@ export default function Register(props) {
       ...validate,
       checkPassword: passwordTest.test(input?.password)
     })
+    console.log(passwordTest.test(input.password))
   }, [input?.password])
   return (
     <>
@@ -178,7 +179,7 @@ export default function Register(props) {
             {validate.isEmailExist &&
               <p className='text-danger'>อีเมล ซ้ำ</p>
             }
-            {!validate.checkPassword &&
+            {passwordTest.test(input?.password) != true &&
               <p className='text-danger'>รหัสผ่านต้องเป็นตัวเลข6หลัก</p>
             }
             {!validate.checkPhone &&
@@ -190,7 +191,9 @@ export default function Register(props) {
             {validate.isNameExist &&
               <p className='text-danger'>ชื่อหน่วยงาน ซ้ำ</p>
             }
-            <button type='submit' class="btn bg-green text-white w-100 rounded-pill" disabled={router.query.role == '2' ? input?.objective == '' || passwordTest.test(input.password) || !validate.checkPhone || validate.isEmailExist || input.password !== input.confirmpassword || validate.isNameExist : validate.isEmailExist || !validate.checkPhone || passwordTest.test(input.password) || input.password !== input.confirmpassword || validate.isNameExist}>สร้างบัญชี</button>
+            <button type='submit' class="btn bg-green text-white w-100 rounded-pill" disabled={router.query.role == '2'
+              ? input?.objective == '' || !passwordTest.test(input.password) || !validate.checkPhone || validate.isEmailExist || input.password !== input.confirmpassword || validate.isNameExist
+              : validate.isEmailExist || !validate.checkPhone || !passwordTest.test(input.password) || input.password !== input.confirmpassword || validate.isNameExist}>สร้างบัญชี</button>
           </div>
         </form>
 

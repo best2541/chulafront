@@ -12,15 +12,6 @@ const AdminOrder = ({ api }) => {
     const [filter, setFilter] = useState('Orders.createdAt')
     const [orderBy, setOrderBy] = useState('asc')
     const [datas, setDatas] = useState([])
-    const inputChange = (event, func) => {
-        const { name, value } = event.target
-        func(prev => (
-            {
-                ...prev,
-                [name]: value
-            }
-        ))
-    }
     const loadData = () => {
         apiPost(`${api}/order/getallorder`, { filter: filter, orderBy: orderBy })
             .then(result => {
@@ -48,33 +39,21 @@ const AdminOrder = ({ api }) => {
                             <p class="text-work text-end">
                                 {data.category == 1 &&
                                     <>
-                                        <span>
-                                            <img class="icon-detailwork-recipient" src='./images/work-create/expired.png' alt="" />
-                                        </span>
                                         อาหารใกล้หมดอายุ
                                     </>
                                 }
                                 {data.category == 2 &&
                                     <>
-                                        <span>
-                                            <img class="icon-detailwork-recipient" src='./images/work-create/stink.png' alt="" />
-                                        </span>
                                         เศษอาหาร
                                     </>
                                 }
                                 {data.category == 3 &&
                                     <>
-                                        <span>
-                                            <img class="icon-detailwork-recipient" src='./images/work-create/healthy-food.png' alt="" />
-                                        </span>
                                         ผักผลไม้
                                     </>
                                 }
                                 {data.category == 4 &&
                                     <>
-                                        <span>
-                                            <img class="icon-detailwork-recipient" src='./images/work-create/chicken-leg.png' alt="" />
-                                        </span>
                                         เศษเนื้อสัตว์
                                     </>
                                 }

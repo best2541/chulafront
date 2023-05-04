@@ -16,6 +16,7 @@ var settings = {
 };
 
 function FullNews({ api, data }) {
+  console.log('data', data)
   return (
     <section id="show-news" class="my-5">
       <div class="container">
@@ -32,9 +33,11 @@ function FullNews({ api, data }) {
                   <div class="carousel-item active">
                     <img class="img-bannernews-index d-block w-100" src={`${api}/img/${data[0]?.img1}`} alt="..." />
                   </div>
-                  <div class="carousel-item">
-                    <img class="img-bannernews-index d-block w-100" src={`${api}/img/${data[0]?.img2}`} alt="..." />
-                  </div>
+                  {data[0].img2 &&
+                    <div class="carousel-item">
+                      <img class="img-bannernews-index d-block w-100" src={`${api}/img/${data[0]?.img2}`} alt="..." />
+                    </div>
+                  }
                 </Slider>
               </div>
             </div>

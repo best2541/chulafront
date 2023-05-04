@@ -52,8 +52,28 @@ const Noti = ({ datas, setDatas, api }) => {
                                     <div class="timeline-content">
                                     </div>
                                 </li>
+                                {data.status > 5 &&
+                                    <>
+                                        <li class="timeline-item">
+                                            <div class={`timeline-info-${data.status < 6 ? 'grey' : data.status == 6 ? 'red' : 'green'}`}>
+                                                <span>ล้มเหลว</span>
+                                            </div>
+                                            <div class="timeline-marker"></div>
+                                            <div class="timeline-content">
+                                            </div>
+                                        </li>
+                                        <li class="timeline-item">
+                                            <div class={`timeline-info-${data.status < 7 ? 'grey' : data.status == 7 ? 'red' : 'green'}`}>
+                                                <span>เทศบาลกำลังมารับขยะ</span>
+                                            </div>
+                                            <div class="timeline-marker"></div>
+                                            <div class="timeline-content">
+                                            </div>
+                                        </li>
+                                    </>
+                                }
                                 <li class="timeline-item">
-                                    <div class={`timeline-info-${data.status < 5 ? 'grey' : data.status == 5 ? 'red' : 'green'}`}>
+                                    <div class={`timeline-info-${data.status < 5 ? 'grey' : data.status == 5 ? 'red' : 'grey'}`}>
                                         <span>ขยะอาหารถูกรับสำเร็จแล้ว</span>
                                     </div>
                                     <div class="timeline-marker"></div>

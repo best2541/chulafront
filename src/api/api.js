@@ -9,6 +9,13 @@ export async function apiGet(url, setting) {
             authorization: `Bearer ${window.localStorage.getItem('token')}`
         },
         ...setting
+    }).catch(err => {
+        if (err.response.status == 401) {
+            window.localStorage.removeItem('token')
+            window.localStorage.removeItem('role')
+            window.location.href = '/'
+        }
+        return err
     })
 }
 export async function apiPost(url, datas) {
@@ -16,6 +23,13 @@ export async function apiPost(url, datas) {
         headers: {
             authorization: `Bearer ${window.localStorage.getItem('token')}`
         }
+    }).catch(err => {
+        if (err.response.status == 401) {
+            window.localStorage.removeItem('token')
+            window.localStorage.removeItem('role')
+            window.location.href = '/'
+        }
+        return err
     })
 }
 export function apiPut() {

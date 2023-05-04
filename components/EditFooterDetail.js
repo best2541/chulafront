@@ -52,28 +52,28 @@ const EditFooterDetail = ({ api }) => {
 
                         <div className="col-lg-6 col-md-6 col-12">
                             <div className="input-group">
-                                <span className="input-group-text border-end-0"></span>
+                                <span className="input-group-text border-end-0 border-start-radius"></span>
                                 <input type="text" name='title' className="form-control border-start-0 color-gray" placeholder="ชื่อ" onChange={datasChange} value={datas.title} />
                             </div>
                         </div>
 
                         <div className="col-lg-6 col-md-6 col-12">
                             <div className="input-group">
-                                <span className="input-group-text border-end-0"></span>
+                                <span className="input-group-text border-end-0 border-start-radius"></span>
                                 <input type="text" id="name" name='address' className="form-control border-start-0" placeholder="ที่อยู่" onChange={datasChange} value={datas.address} />
                             </div>
                         </div>
 
                         <div className="col-lg-6 col-md-6 col-12">
                             <div className="input-group">
-                                <span className="input-group-text border-end-0"></span>
+                                <span className="input-group-text border-end-0 border-start-radius"> </span>
                                 <input type="text" name='phone' className="form-control border-start-0" placeholder="เบอร์โทรศัพท์" onChange={datasChange} value={datas.phone} />
                             </div>
                         </div>
 
                         <div className="col-lg-6 col-md-6 col-12">
                             <div className="input-group">
-                                <span className="input-group-text border-end-0"></span>
+                                <span className="input-group-text border-end-0 border-start-radius"></span>
                                 <input type="text" name='email' className="form-control border-start-0" placeholder="อีเมล" onChange={datasChange} value={datas.email} />
                             </div>
                         </div>

@@ -29,6 +29,7 @@ const EditBanner = ({ api }) => {
         apiPost(`${api}/index/editbanner`, form1)
             .then(result => {
                 if (!result.data.err) {
+                    console.log(result.data)
                     setBanner1({ ...banner1, img: event.target.files[0], preview: `${api}/img/${result.data}` })
                 }
             })
@@ -109,7 +110,6 @@ const EditBanner = ({ api }) => {
     }
     useEffect(() => {
         load()
-        console.log(datas)
     }, [])
     return (
         <section className="sec-account">
@@ -121,9 +121,9 @@ const EditBanner = ({ api }) => {
                         </p>
                     </div>
                 </div>
-                <div className="wraper-textform w-100 d-flex flex-column align-items-center">
+                <div className="">
 
-                    <div className="row d-flex justify-content-center">
+                    <div className="row d-flex justify-content-center container">
 
                         <div className="row">
                             <div className="col-12">
@@ -198,16 +198,16 @@ const EditBanner = ({ api }) => {
                             </div>
                         </div>
 
-                        <div className="col-12">
-                            <hr className="hr-account" />
+                    </div>
+                    <div className="col-12">
+                        <hr className="hr-account" />
+                    </div>
+
+                    <div className="col-lg-6 col-md-6 col-12">
+                        <div className="box-btn-signout">
+                            <a className="btn bg-green text-white rounded-pill" style={{ 'display': 'flex', 'width': '100%', 'alignItems': 'center' }} onClick={() => save()}>บันทึกแบนเนอร์</a>
                         </div>
 
-                        <div className="col-lg-6 col-md-6 col-12">
-                            <div className="box-btn-signout">
-                                <a className="btn bg-green text-white rounded-pill" style={{ 'width': '100%' }} onClick={() => save()}>บันทึกแบนเนอร์</a>
-                            </div>
-
-                        </div>
                     </div>
                 </div>
             </div>

@@ -15,8 +15,8 @@ var settings = {
   nextArrow: <NextBtn />
 };
 
-function IndexNews({ api,datas }) {
-  const data = datas?.filter(data => data.id == 1 && data.status == 1)
+function IndexNews({ api, datas }) {
+  const data = datas?.filter((data, index) => index == 1)
   console.log(data)
   return (
     <section id="show-news" class="my-5">
@@ -36,9 +36,11 @@ function IndexNews({ api,datas }) {
                       <div class="carousel-item active">
                         <img class="img-bannernews-index d-block w-100" src={`${api}/img/${data[0].img1}`} alt="..." />
                       </div>
-                      <div class="carousel-item">
-                        <img class="img-bannernews-index d-block w-100" src={`${api}/img/${data[0].img2}`} alt="..." />
-                      </div>
+                      {data[0].img2 &&
+                        <div class="carousel-item">
+                          <img class="img-bannernews-index d-block w-100" src={`${api}/img/${data[0].img2}`} alt="..." />
+                        </div>
+                      }
                     </Slider>
                   </div>
                 </div>
@@ -52,7 +54,7 @@ function IndexNews({ api,datas }) {
                 {data[0].detail}
               </p>
               <div class="box-bt-rm my-4">
-                <a href={`/news/1`} target='_blank' class="btn button-readmore">
+                <a href={`/news/${data[0].id}`} target='_blank' class="btn button-readmore">
                   อ่านเพิ่มเติม
                 </a>
               </div>

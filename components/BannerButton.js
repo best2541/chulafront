@@ -7,13 +7,13 @@ function BannerButton() {
   return (
     <section id="button-work" class="boxbutton-workindex my-5">
       <div class="container">
-        {role &&
+        {/* {role && */}
           <Link href='/neworder'>
             <div class="btn button-workindex w-100">
               {role == 1 ? 'สร้างงาน' : role == 2 ? 'รับขยะ' : 'ตรวจสอบ'}
             </div>
           </Link>
-        }
+        {/* } */}
       </div>
     </section>
   )

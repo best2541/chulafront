@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { apiGet, apiPost } from '@/api/api'
-import minuteForm from './minuteForm'
-import month from './month'
 
 const NewsDetail = ({ api, id, role, prev }) => {
     const [datas, setDatas] = useState({})

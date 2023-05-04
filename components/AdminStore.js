@@ -40,7 +40,7 @@ const AdminStore = ({ api }) => {
             .finally(() => setLoading(false))
     }
     const printExcel = (event) => {
-        apiGet(`${api}/setting/excelstore?year=${input.year}&month=${input.month}&email=${router.query.id}`, { responseType: 'blob' })
+        apiGet(`${api}/setting/excelstore?year=${input.year}&month=${input.month}&email=${router.query.id}&category=${input.category}`, { responseType: 'blob' })
             .then(result => {
                 console.log(result)
                 if (!result.data.err) {
@@ -100,15 +100,16 @@ const AdminStore = ({ api }) => {
                         <hr class="hr-bigbox-work" />
                         <form onSubmit={loadData}>
                             <div class="row d-flex justify-content-center">
-                                {/* <div class="col-lg-4 col-md-4 col-sm-12 col-12">
-                                <select id="filter-work-recipientOne" class="form-select filter-select pad-bot" aria-label="Default select example" name='category' onChange={inputChange} required>
-                                    <option selected>เลือกประเภทขยะอาหาร</option>
-                                    <option value="1">อาหารใกล้หมดอายุ</option>
-                                    <option value="2">เศษอาหาร </option>
-                                    <option value="3">เศษผักผลไม้</option>
-                                    <option value="4">เศษเนื้อสัตว์</option>
-                                </select>
-                            </div> */}
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                                    <select id="filter-work-recipientOne" class="form-select filter-select pad-bot" aria-label="Default select example" name='category' onChange={inputChange} required>
+                                        <option selected>เลือกประเภทขยะอาหาร</option>
+                                        <option value='%'>ทั้งหมด</option>
+                                        <option value="1">อาหารใกล้หมดอายุ</option>
+                                        <option value="2">เศษอาหาร </option>
+                                        <option value="3">เศษผักผลไม้</option>
+                                        <option value="4">เศษเนื้อสัตว์</option>
+                                    </select>
+                                </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-12">
                                     <select id="filter-work-recipientTwo" class="form-select filter-select pad-bot" aria-label="Default select example" name='month' onChange={inputChange} required>
                                         <option selected>เลือกเดือน</option>

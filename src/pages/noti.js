@@ -7,6 +7,7 @@ import Noti from '../../components/Noti'
 import { useEffect, useState } from 'react';
 import { apiGet } from '@/api/api';
 import ReceiveNoti from '../../components/ReceiveNoti';
+import AdminNoti from '../../components/AdminNoti';
 
 export default function Notification(props) {
     const role = typeof window !== 'undefined' ? window?.localStorage.getItem('role') : ''
@@ -93,6 +94,9 @@ export default function Notification(props) {
             }
             {role == 2 &&
                 <ReceiveNoti api={props.api} datas={datas} setDatas={setDatas} />
+            }
+            {role == 3 &&
+                <AdminNoti datas={datas} setDatas={setDatas} api={props.api} />
             }
             <Footer api={props.api} />
         </>

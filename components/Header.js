@@ -10,8 +10,8 @@ function Header({ api }) {
         setToken(typeof window !== 'undefined' ? window.localStorage.getItem('token') : null)
         apiGet(`${api}/notification/header`)
             .then(result => {
-                if (!result.data.err) {
-                    setCount(result.data.count)
+                if (!result?.data?.err) {
+                    setCount(result?.data?.count)
                 } else
                     console.log('err', result.data.err)
             })
